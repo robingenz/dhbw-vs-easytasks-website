@@ -1,0 +1,30 @@
+<button *ngIf="task"
+        class="et-task-list-item"
+        [ngClass]="task.status === taskStatus.done ? 'et-task-list-item-completed' : ''"
+        (click)="task.status === taskStatus.open ? onTaskClick(task) : undefined"
+        matRipple
+        [matRippleDisabled]="task.status === taskStatus.done ? true : false">
+    <div class="et-task-list-item-content">
+        <mat-checkbox class="et-task-list-item-content-item"
+                      (click)="task.status === taskStatus.open ? $event.stopPropagation() : undefined"
+                      (change)="task.status === taskStatus.open ? onTaskCheck(task) : undefined"
+                      [checked]="task.status === taskStatus.done ? true : false"
+                      [disabled]="task.status === taskStatus.done ? true : false"></mat-checkbox>
+        <h4 class="et-task-list-item-content-title et-task-list-item-content-item">{{task.title}}</h4>
+        <span class="spacer"></span>
+        <span class="et-task-list-item-content-item"
+              [style.color]="task.deadline < dateNow ? 'red' : 'inherit'">{{task.deadline | date:'dd.MM.yyyy' }}</span>
+        <ng-container [ngSwitch]="task.priority">
+            <mat-icon class="et-task-list-item-content-item et-task-list-item-content-priority"
+                      *ngSwitchCase="1">looks_one</mat-icon>
+            <mat-icon class="et-task-list-item-content-item et-task-list-item-content-priority"
+                      *ngSwitchCase="2">looks_two</mat-icon>
+            <mat-icon class="et-task-list-item-content-item et-task-list-item-content-priority"
+                      *ngSwitchCase="3">looks_3</mat-icon>
+            <mat-icon class="et-task-list-item-content-item et-task-list-item-content-priority"
+                      *ngSwitchCase="4">looks_4</mat-icon>
+            <mat-icon class="et-task-list-item-content-item et-task-list-item-content-priority"
+                      *ngSwitchCase="5">looks_5</mat-icon>
+        </ng-container>
+    </div>
+</button>

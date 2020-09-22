@@ -1,0 +1,43 @@
+<header>
+    <mat-toolbar color="primary">
+        <button mat-icon-button
+                (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>EasyTasks</span>
+        <span class="spacer"></span>
+        <button mat-icon-button
+                [matMenuTriggerFor]="appMenu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+    </mat-toolbar>
+    <mat-progress-bar color="accent"
+                      mode="indeterminate"
+                      *ngIf="showProgressBar$ | async">
+    </mat-progress-bar>
+    <mat-menu #appMenu="matMenu">
+        <button mat-menu-item
+                (click)="logout()">Logout</button>
+    </mat-menu>
+</header>
+
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav
+                 (click)="isSmallScreen() ? sidenav.close() : undefined"
+                 [mode]="isSmallScreen() ? 'over' : 'side'"
+                 [opened]="isSmallScreen() ? false : true"
+                 position="start">
+        <app-sidenav></app-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+    <mat-sidenav #sidebar
+                 id="sidebar"
+                 mode="side"
+                 position="end">
+        <router-outlet name="sidebar"
+                       (activate)="sidebar.open()"
+                       (deactivate)="sidebar.close()"></router-outlet>
+    </mat-sidenav>
+</mat-sidenav-container>

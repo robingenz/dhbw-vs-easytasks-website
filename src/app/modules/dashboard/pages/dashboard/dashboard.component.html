@@ -1,0 +1,27 @@
+<main class="padding">
+    <app-report-card *ngIf="reportData"
+                     [report]="reportData"></app-report-card>
+    <div class="et-task-list-wrapper">
+        <div class="et-task-list-button-wrapper">
+            <button mat-button
+                    aria-label="Filter"
+                    (click)="openFilterDialog(tasksFilterSettings, taskLists)">
+                <mat-icon [matBadge]="getNumberOfActiveFilters(tasksFilterSettings)"
+                          [matBadgeHidden]="getNumberOfActiveFilters(tasksFilterSettings) < 1 ? true : false">filter_list</mat-icon>
+                <span>Filter</span>
+            </button>
+            <button mat-button
+                    aria-label="Sorting"
+                    (click)="openSortingDialog(tasksSortingSettings)">
+                <mat-icon [matBadge]="getNumberOfActiveSortings(tasksSortingSettings)"
+                          [matBadgeHidden]="getNumberOfActiveSortings(tasksSortingSettings) < 1 ? true : false">sort</mat-icon>
+                <span>Sorting</span>
+            </button>
+        </div>
+        <app-task-list *ngIf="tasks"
+                       [tasks]="tasks"
+                       [title]="'All tasks'"
+                       (taskClick)="openTaskDetails($event)"
+                       (taskCheck)="markTaskAsDone($event)"></app-task-list>
+    </div>
+</main>

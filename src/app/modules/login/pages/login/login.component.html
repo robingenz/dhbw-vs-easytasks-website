@@ -1,0 +1,38 @@
+<main class="padding">
+    <div class="login-card-wrapper">
+        <mat-card class="login-card">
+            <mat-card-header>
+                <mat-card-title>Login</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="padding">
+                <form class="login-form"
+                      [formGroup]="loginFormGroup">
+                    <mat-form-field>
+                        <input matInput
+                               formControlName="username"
+                               (keyup.enter)="login(loginFormGroup)"
+                               type="text"
+                               placeholder="Username">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput
+                               formControlName="password"
+                               (keyup.enter)="login(loginFormGroup)"
+                               type="password"
+                               placeholder="Password">
+                    </mat-form-field>
+                </form>
+            </mat-card-content>
+            <mat-card-actions class="flex">
+                <span class="spacer"></span>
+                <button mat-button
+                        routerLink="/register"
+                        [disabled]="isLoading$ | async">Register</button>
+                <button mat-raised-button
+                        color="primary"
+                        (click)="login(loginFormGroup)"
+                        [disabled]="isLoading$ | async">Login</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</main>

@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Delete task list</h1>
+<div mat-dialog-content>
+    <p>Are you sure you want to delete this task list?</p>
+</div>
+<div mat-dialog-actions
+     class="flex">
+    <button mat-raised-button
+            color="primary"
+            (click)="closeDialog(false)">No</button>
+    <span class="spacer"></span>
+    <button mat-button
+            (click)="closeDialog(true)">Yes</button>
+</div>

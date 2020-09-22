@@ -1,0 +1,10 @@
+mat-sidenav {
+    max-width: 300px;
+    width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+    #sidebar {
+        max-width: 100%;
+    }
+}

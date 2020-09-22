@@ -1,0 +1,22 @@
+.login-card {
+    max-width: 500px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.login-card-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: calc(100vh - 69px);
+}
+
+.login-form,
+mat-form-field {
+    width: 100%;
+}
+
+mat-form-field {
+    margin: 6px 0px;
+}

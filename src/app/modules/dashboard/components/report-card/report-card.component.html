@@ -1,0 +1,92 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Report</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="et-report-item-wrapper"
+             *ngIf="report">
+            <div class="et-report-item"><span>Number of open tasks:</span><span>{{ report.openTasks }}</span></div>
+            <div class="et-report-item"><span>Number of upcoming tasks for the next two
+                    days:</span><span>{{ report.dueTasksTwoDays }}</span></div>
+            <div class="et-report-item"><span>Share of expired tasks:</span><span>{{ report.percentTasksExceeded | number: '1.0-1':'de' }}
+                    %</span></div>
+            <div class="et-report-item"><span>Average processing time for
+                    tasks:</span><span>{{ report.averageTaskProcessingTime/60 | number: '1.0-1':'de' }}
+                    min</span>
+            </div>
+            <div class="et-report-item"><span>Most productive day this week:</span><span>{{ report.bestDay | weekday }}</span></div>
+            <div class="et-report-item"><span>Number of completed tasks this
+                    week:</span><span>{{ report.taskCountActualWeek.closedTasks }}</span>
+            </div>
+            <div class="et-report-item"><span>Number of expired tasks this
+                    week:</span><span>{{ report.taskCountActualWeek.exceededTasks }}</span>
+            </div>
+            <div class="et-report-item"><span>Number of tasks by priority:</span><span>1 ({{ report.tasksPerPriority[1] }}x), 2
+                    ({{ report.tasksPerPriority[2] }}x), 3 ({{ report.tasksPerPriority[3] }}x), 4 ({{ report.tasksPerPriority[4] }}x), 5
+                    ({{ report.tasksPerPriority[5] }}x)</span></div>
+            <div class="et-report-table-wrapper">
+                <table mat-table
+                       [dataSource]="report.taskCountPerTasklist"
+                       class="full-width et-report-table">
+
+                    <!-- Task list id Column -->
+                    <ng-container matColumnDef="tasklistId">
+                        <th mat-header-cell
+                            *matHeaderCellDef>ID</th>
+                        <td mat-cell
+                            *matCellDef="let element">{{element.tasklistId}}</td>
+                        <td mat-footer-cell
+                            *matFooterCellDef>Total</td>
+                    </ng-container>
+
+                    <!-- Task list Column -->
+                    <ng-container matColumnDef="tasklistTitle">
+                        <th mat-header-cell
+                            *matHeaderCellDef>Task list</th>
+                        <td mat-cell
+                            *matCellDef="let element">{{element.tasklistTitle}}</td>
+                        <td mat-footer-cell
+                            *matFooterCellDef></td>
+                    </ng-container>
+
+                    <!-- Number of opened tasks Column -->
+                    <ng-container matColumnDef="openTasks">
+                        <th mat-header-cell
+                            *matHeaderCellDef>Number of opened tasks</th>
+                        <td mat-cell
+                            *matCellDef="let element">{{element.openTasks}}</td>
+                        <td mat-footer-cell
+                            *matFooterCellDef>{{ getNumberOfAllOpenedTasks() }}</td>
+                    </ng-container>
+
+                    <!-- Number of expired tasks Column -->
+                    <ng-container matColumnDef="expiredTasks">
+                        <th mat-header-cell
+                            *matHeaderCellDef>Number of expired tasks</th>
+                        <td mat-cell
+                            *matCellDef="let element">{{element.expiredTasks}}</td>
+                        <td mat-footer-cell
+                            *matFooterCellDef>{{ getNumberOfAllExpiredTasks() }}</td>
+                    </ng-container>
+
+                    <!-- Number of closed tasks Column -->
+                    <ng-container matColumnDef="closedTasks">closedTasks
+                        <th mat-header-cell
+                            *matHeaderCellDef>Number of closed tasks</th>
+                        <td mat-cell
+                            *matCellDef="let element">{{element.closedTasks}}</td>
+                        <td mat-footer-cell
+                            *matFooterCellDef>{{ getNumberOfAllClosedTasks() }}</td>
+                    </ng-container>
+
+                    <tr mat-header-row
+                        *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row
+                        *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <tr mat-footer-row
+                        *matFooterRowDef="displayedColumns"></tr>
+                </table>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

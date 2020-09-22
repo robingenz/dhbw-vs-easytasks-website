@@ -1,0 +1,22 @@
+.register-card {
+    max-width: 500px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.register-card-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: calc(100vh - 69px);
+}
+
+.register-form,
+mat-form-field {
+    width: 100%;
+}
+
+mat-form-field {
+    margin: 6px 0px;
+}

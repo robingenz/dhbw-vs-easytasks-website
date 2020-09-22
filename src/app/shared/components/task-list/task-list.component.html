@@ -1,0 +1,11 @@
+<div class="et-task-list-wrapper">
+    <h3 class="et-task-list-title">{{ title }}</h3>
+    <div class="et-task-list-items-wrapper">
+        <app-task-list-item *ngFor="let task of tasks"
+                            [task]="task"
+                            (taskClick)="onTaskClick($event)"
+                            (taskCheck)="onTaskCheck($event)">
+        </app-task-list-item>
+    </div>
+    <mat-divider></mat-divider>
+</div>

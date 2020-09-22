@@ -1,0 +1,48 @@
+<main class="padding">
+    <div class="register-card-wrapper">
+        <mat-card class="register-card">
+            <mat-card-header>
+                <mat-card-title>Register</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="padding">
+                <form class="register-form"
+                      [formGroup]="registrationFormGroup">
+                    <mat-form-field>
+                        <input matInput
+                               formControlName="username"
+                               (keyup.enter)="register(registrationFormGroup)"
+                               type="text"
+                               placeholder="Username">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput
+                               formControlName="password"
+                               (keyup.enter)="register(registrationFormGroup)"
+                               type="password"
+                               placeholder="Password">
+                        <mat-hint>Minimum length is 6 characters</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput
+                               formControlName="confirmPassword"
+                               (keyup.enter)="register(registrationFormGroup)"
+                               type="password"
+                               placeholder="Password confirmation">
+                        <mat-error *ngIf="registrationFormGroup.controls.confirmPassword.errors?.MatchPassword">Password not match
+                        </mat-error>
+                    </mat-form-field>
+                </form>
+            </mat-card-content>
+            <mat-card-actions class="flex">
+                <span class="spacer"></span>
+                <button mat-button
+                        [disabled]="isLoading$ | async"
+                        routerLink="/login">Login</button>
+                <button mat-raised-button
+                        color="primary"
+                        [disabled]="isLoading$ | async"
+                        (click)="register(registrationFormGroup)">Register</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</main>

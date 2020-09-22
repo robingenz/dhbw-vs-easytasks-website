@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Sort tasks</h1>
+<div mat-dialog-content>
+    <div cdkDropList
+         class="cdk-drop-list"
+         (cdkDropListDropped)="drop($event)">
+        <div class="et-list-item"
+             *ngFor="let sortItem of sortItems"
+             cdkDrag>
+            <button mat-icon-button
+                    aria-label="Sort"
+                    (click)="sortItem.toggleSortDirection()">
+                <ng-container [ngSwitch]="sortItem.sortDirection">
+                    <mat-icon *ngSwitchCase="'asc'">expand_less</mat-icon>
+                    <mat-icon *ngSwitchCase="'desc'">expand_more</mat-icon>
+                    <mat-icon *ngSwitchDefault>unfold_more</mat-icon>
+                </ng-container>
+            </button>
+            <span>{{sortItem.title}}</span></div>
+    </div>
+</div>
+<div mat-dialog-actions
+     class="flex">
+    <button mat-button
+            (click)="onCancel()">Cancel</button>
+    <span class="spacer"></span>
+    <button mat-button
+            color="warn"
+            (click)="resetSortingSettings()">Reset</button>
+    <button mat-raised-button
+            color="primary"
+            (click)="closeDialog()">Sort</button>
+</div>

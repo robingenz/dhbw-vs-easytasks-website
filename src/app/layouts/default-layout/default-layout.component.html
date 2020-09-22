@@ -1,0 +1,11 @@
+<header>
+    <mat-toolbar color="primary">
+        <span>EasyTasks</span>
+    </mat-toolbar>
+    <mat-progress-bar color="accent"
+                      mode="indeterminate"
+                      *ngIf="showProgressBar$ | async">
+    </mat-progress-bar>
+</header>
+
+<router-outlet></router-outlet>

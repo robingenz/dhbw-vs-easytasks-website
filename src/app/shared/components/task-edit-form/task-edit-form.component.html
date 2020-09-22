@@ -1,0 +1,71 @@
+<aside *ngIf="task"
+       class="padding">
+    <mat-form-field class="full-width">
+        <input matInput
+               placeholder="Title"
+               [(ngModel)]="task.title">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="2"
+                cdkAutosizeMaxRows="5" [(ngModel)]="task.description"></textarea>
+    </mat-form-field>
+    <!-- <div>
+        <mat-label>Priority</mat-label>
+        <mat-slider class="full-width"
+                    thumbLabel
+                    min="1"
+                    max="5"
+                    step="1"
+                    value="{{ task.priority }}"></mat-slider>
+    </div> -->
+    <mat-form-field class="full-width">
+        <mat-label>Priority</mat-label>
+        <mat-select [(value)]="task.priority">
+            <mat-option *ngFor="let priorityOption of priorityOptions"
+                        [value]="priorityOption.value">
+                {{ priorityOption.displayValue }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div class="et-task-edit-deadline-wrapper full-width">
+        <mat-form-field class="et-task-edit-deadline-datepicker">
+            <input matInput
+                   [matDatepicker]="deadlinePicker"
+                   [(ngModel)]="task.deadline"
+                   placeholder="Choose the expiration date"
+                   disabled>
+            <mat-datepicker-toggle matSuffix
+                                   [for]="deadlinePicker"></mat-datepicker-toggle>
+            <mat-datepicker #deadlinePicker
+                            disabled="false"
+                            touchUi></mat-datepicker>
+        </mat-form-field>
+        <mat-icon class="et-task-edit-deadline-reset-button"
+                  (click)="task.deadline = null">clear</mat-icon>
+    </div>
+    <mat-form-field class="full-width">
+        <mat-label>Status</mat-label>
+        <mat-select [(value)]="task.status">
+            <mat-option *ngFor="let statusOption of statusOptions"
+                        [value]="statusOption.value">
+                {{ statusOption.displayValue }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="flex full-width">
+        <button mat-button
+                (click)="closeSidebar()">Cancel</button>
+        <span class="spacer"></span>
+        <button mat-button
+                color="warn"
+                (click)="deleteTask(task.id)">Delete</button>
+        <button mat-raised-button
+                color="primary"
+                (click)="saveTask(task)">Save</button>
+    </div>
+</aside>

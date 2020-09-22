@@ -1,0 +1,31 @@
+.et-list-actions-wrapper {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    align-content: flex-start;
+    flex-direction: row;
+
+    mat-form-field {
+        margin-right: 10px;
+    }
+
+    button {
+        flex-grow: 0;
+        flex-shrink: 0;
+
+    }
+
+    .et-list-actions-button-text {
+        margin-left: 10px;
+    }
+
+    @media all and (max-width: 768px) {
+        .et-list-actions-button-text {
+            display: none;
+        }
+    }
+}
+
+.et-list-form-field mat-icon {
+    cursor: pointer;
+}

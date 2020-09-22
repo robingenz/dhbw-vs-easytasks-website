@@ -1,0 +1,16 @@
+.et-task-edit-deadline-wrapper {
+    display: flex;
+    align-items: center;
+    align-content: flex-start;
+    flex-direction: row;
+}
+
+.et-task-edit-deadline-datepicker {
+    width: 100%;
+}
+
+.et-task-edit-deadline-reset-button {
+    cursor: pointer;
+    margin-left: 20px;
+    color: #757575;
+}

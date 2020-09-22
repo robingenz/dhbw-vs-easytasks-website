@@ -1,0 +1,47 @@
+<h1 mat-dialog-title>Filter task {{data.taskLists.length > 1 ? 'lists' : 'list'}}</h1>
+<div mat-dialog-content>
+    <mat-form-field *ngIf="!data.isSingleListView">
+        <mat-label>Task lists</mat-label>
+        <mat-select [formControl]="selectTaskListsControl"
+                    multiple>
+            <mat-option *ngFor="let taskList of data.taskLists"
+                        [value]="taskList.id">{{taskList.title}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Urgency</mat-label>
+        <mat-select [formControl]="selectUrgencyControl"
+                    multiple>
+            <mat-option [value]="2">Very urgent</mat-option>
+            <mat-option [value]="1">Urgent</mat-option>
+            <mat-option [value]="0">Not urgent</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select [formControl]="selectStatusControl"
+                    multiple>
+            <mat-option [value]="0">Open</mat-option>
+            <mat-option [value]="1">Done</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Limit</mat-label>
+        <input matInput
+               [formControl]="limitControl"
+               min="1"
+               type="number">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions
+     class="flex">
+    <button mat-button
+            (click)="onCancel()">Cancel</button>
+    <span class="spacer"></span>
+    <button mat-button
+            color="warn"
+            (click)="resetFilterSettings()">Reset</button>
+    <button mat-raised-button
+            color="primary"
+            (click)="closeDialog()">Filter</button>
+</div>

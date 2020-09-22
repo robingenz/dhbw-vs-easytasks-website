@@ -1,0 +1,36 @@
+<main class="padding">
+    <ng-container *ngIf="taskList">
+        <div class="et-list-actions-wrapper">
+            <mat-form-field class="full-width et-list-form-field"
+                            (keyup.enter)="submitNewTask()">
+                <input matInput
+                       [(ngModel)]="addTaskInputValue"
+                       placeholder="Add a new task...">
+                <mat-icon matSuffix
+                          (click)="submitNewTask()">add</mat-icon>
+            </mat-form-field>
+            <button mat-button
+                    aria-label="Filter"
+                    (click)="openFilterDialog(tasksFilterSettings, [taskList])"
+                    class="et-list-actions-button">
+                <mat-icon [matBadge]="getNumberOfActiveFilters(tasksFilterSettings)"
+                          [matBadgeHidden]="getNumberOfActiveFilters(tasksFilterSettings) < 1 ? true : false"
+                          class="et-list-actions-button-icon">filter_list</mat-icon>
+                <span class="et-list-actions-button-text">Filter</span>
+            </button>
+            <button mat-button
+                    aria-label="Sorting"
+                    (click)="openSortingDialog(tasksSortingSettings)"
+                    class="et-list-actions-button">
+                <mat-icon [matBadge]="getNumberOfActiveSortings(tasksSortingSettings)"
+                          [matBadgeHidden]="getNumberOfActiveSortings(tasksSortingSettings) < 1 ? true : false"
+                          class="et-list-actions-button-icon">sort</mat-icon>
+                <span class="et-list-actions-button-text">Sorting</span>
+            </button>
+        </div>
+        <app-task-list [tasks]="taskList.tasks"
+                       [title]="taskList.title"
+                       (taskClick)="openTaskDetails($event)"
+                       (taskCheck)="markTaskAsDone($event)"></app-task-list>
+    </ng-container>
+</main>

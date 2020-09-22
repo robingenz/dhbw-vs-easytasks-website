@@ -1,0 +1,62 @@
+.et-task-list-item {
+    display: block;
+    height: 48px;
+    width: 100%;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0 16px;
+}
+
+button.et-task-list-item {
+    background: 0 0;
+    color: inherit;
+    border: none;
+    font: inherit;
+    -webkit-appearance: button;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0;
+}
+
+button.et-task-list-item:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.et-task-list-item-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    height: inherit;
+}
+
+.et-task-list-item-content-item {
+    padding-right: 16px;
+}
+
+.et-task-list-item-content-item:last-child {
+    padding-right: 0px;
+}
+
+.et-task-list-item-content-title {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.et-task-list-item-content-priority {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.et-task-list-item-completed {
+    opacity: 0.6;
+}
+
+.et-task-list-item-completed .et-task-list-item-content-title {
+    text-decoration: line-through;
+}

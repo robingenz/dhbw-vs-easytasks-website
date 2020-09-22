@@ -1,0 +1,33 @@
+.et-report-item-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.et-report-item {
+    flex-basis: auto;
+    margin: 10px;
+
+    span:last-of-type {
+        padding-left: 10px;
+        font-weight: bold;
+    }
+}
+
+.et-report-table-wrapper {
+    overflow: auto;
+    width: 100%;
+}
+
+.et-report-table {
+    margin-top: 20px;
+
+    [mat-footer-row] {
+        font-weight: bold;
+    }
+
+    td {
+        text-align: center;
+    }
+}
